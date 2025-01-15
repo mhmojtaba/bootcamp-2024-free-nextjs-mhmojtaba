@@ -4,7 +4,8 @@ import FilterComponent from "@/components/filterComponent/filterComponent.compon
 import DoctorsComponent from "@/components/doctorsComponent/doctorsComponent.component";
 import GlobalSearchBoxComponent from "@/components/global-search-box/globalSearchBoxComponent";
 import FiltersProvider from "@/providers/filters.provider";
-import DoctorProvider from "@/providers/doctors.provider";
+import DoctorsProvider from "@/providers/doctorsProvider";
+import { doctorData } from "@/constants/doctors";
 import { SearchParams } from "@/types/types";
 import { generateDefaultFilters } from "@/utils/utils";
 
@@ -20,7 +21,7 @@ export default async function Page({
   const defaultFilters = generateDefaultFilters(await searchParams);
   return (
     <FiltersProvider defaultFilters={defaultFilters}>
-      <DoctorProvider>
+      <DoctorsProvider doctors={doctorData}>
         <div className={styles.search}>
           <GlobalSearchBoxComponent />
           <div className={styles.container}>
@@ -32,7 +33,7 @@ export default async function Page({
             </div>
           </div>
         </div>
-      </DoctorProvider>
+      </DoctorsProvider>
     </FiltersProvider>
   );
 }

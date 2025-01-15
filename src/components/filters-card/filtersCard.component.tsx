@@ -17,9 +17,7 @@ export default function FiltersCardComponent(): ReactElement | null {
       !filters.expertise &&
       !filters.gender &&
       !filters.degree &&
-      !filters.option1 &&
-      !filters.option2 &&
-      !filters.option3
+      !filters.selectedBadges?.length
     );
   }, [filters]);
 
@@ -63,21 +61,15 @@ export default function FiltersCardComponent(): ReactElement | null {
               {filters.degree}
             </li>
           )}
-          {filters.option1 && (
-            <li onClick={() => filterClickHandler("option1")}>
-              {filters.option1}
-            </li>
-          )}
-          {filters.option2 && (
-            <li onClick={() => filterClickHandler("option2")}>
-              {filters.option2}
-            </li>
-          )}
-          {filters.option3 && (
-            <li onClick={() => filterClickHandler("option3")}>
-              {filters.option3}
-            </li>
-          )}
+          {filters.selectedBadges?.length &&
+            filters.selectedBadges.map((badge) => (
+              <li
+                onClick={() => filterClickHandler("selectedBadges")}
+                key={badge}
+              >
+                {badge}
+              </li>
+            ))}
         </ul>
       </div>
     </CardComponent>

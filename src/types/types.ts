@@ -3,12 +3,15 @@ export interface DoctorModel {
   name: string;
   image: string;
   isVerified: boolean;
+  gender: string;
   averageRating: number;
   totalVotes: number;
   address: string;
   firstAvailableAppointment: string;
   brief: string;
-  badges: (string | string[])[];
+  degree: string;
+  expertise: string;
+  badges: string[];
 }
 
 export interface initialStateType {
@@ -22,28 +25,6 @@ export type actionType = {
   payload?: DoctorModel[];
 };
 
-export interface DataContextType {
-  isLoading: boolean;
-  doctors: DoctorModel[];
-  error?: any;
-  filterDoctors: ({
-    keys,
-    value,
-  }: {
-    keys: keyof DoctorModel;
-    value: string;
-  }) => void;
-  getDoctors?: () => void;
-}
-
-export type filterType = {
-  query?: string;
-  specialty?: string;
-  location?: string;
-  degree?: string;
-  gender?: "male" | "female" | "both";
-};
-
 export type selectOptionsType = {
   value?: string;
   label?: string;
@@ -54,9 +35,7 @@ export type FiltersType = {
   expertise?: string;
   gender?: string;
   degree?: string;
-  option1?: string;
-  option2?: string;
-  option3?: string;
+  selectedBadges?: string[];
 };
 
 export type SearchParams = { [key: string]: string | string[] | undefined };

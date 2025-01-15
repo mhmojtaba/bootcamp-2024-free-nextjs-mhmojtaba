@@ -4,7 +4,7 @@ export type FiltersAction =
   | {
       type: "updated_filter";
       key: keyof FiltersType;
-      value: string;
+      value: string | string[];
     }
   | {
       type: "removed_filter";

@@ -13,7 +13,7 @@ export const filterItems: {
 }[] = [
   { label: "خوش برخورد", value: "خوش برخورد" },
   { label: "کمترین  معطلی", value: "کمترین معطلی" },
-  { label: "نوبت دهی فعال", value: "فعال شدن نوبت‌دهی" },
+  { label: "منتخب پذیرش24", value: "منتخب پذیرش24" },
 ];
 
 export const expertiseOptions: string[] = [

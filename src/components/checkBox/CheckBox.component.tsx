@@ -12,32 +12,19 @@ type CheckBoxProps = {
 function CheckBoxComponent({ label, value }: CheckBoxProps) {
   const { filters, dispatch } = useFilters();
 
-  const onCheckHandler = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    value: string,
-  ) => {
-    if (e.target.checked) {
-      dispatch({
-        type: "updated_filter",
-        key:
-          value == "خوش برخورد"
-            ? "option1"
-            : value == "کمترین معطلی"
-              ? "option2"
-              : "option3",
-        value,
-      });
-    } else {
-      dispatch({
-        type: "removed_filter",
-        key:
-          value === "خوش برخورد"
-            ? "option1"
-            : value === "کمترین معطلی"
-              ? "option2"
-              : "option3",
-      });
-    }
+  const handleCheckboxChange = (badge: string) => {
+    const selectedBadges = filters.selectedBadges || [];
+
+    const isSelected = selectedBadges.includes(badge);
+    const updatedBadges = isSelected
+      ? selectedBadges.filter((b) => b !== badge) // Remove badge
+      : [...selectedBadges, badge]; // Add badge
+
+    dispatch({
+      type: "updated_filter",
+      key: "selectedBadges",
+      value: updatedBadges,
+    });
   };
 
   return (
@@ -49,14 +36,9 @@ function CheckBoxComponent({ label, value }: CheckBoxProps) {
         <input
           className={`${styles["tgl"]} ${styles["tgl-flat"]}`}
           id={value}
-          value={value}
-          checked={
-            filters.option1 == value ||
-            filters.option2 == value ||
-            filters.option3 == value
-          }
+          checked={filters.selectedBadges?.includes(value) || false}
           type="checkbox"
-          onChange={(e) => onCheckHandler(e, value)}
+          onChange={() => handleCheckboxChange(value)}
         />
         <label className={styles["tgl-btn"]} htmlFor={value}></label>
       </div>
