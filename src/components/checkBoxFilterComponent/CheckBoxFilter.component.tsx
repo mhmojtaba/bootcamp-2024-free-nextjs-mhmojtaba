@@ -4,7 +4,7 @@ import CheckBoxComponent from "../checkBox/CheckBox.component";
 import { filterItems } from "@/constants/constants";
 import CardComponent from "../card/card.component";
 
-import styles from "./CheckBoxFilter.module.css";
+import styles from "./checkBoxFilter.module.css";
 
 function CheckBoxFilterComponent() {
   return (
